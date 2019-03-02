@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 2.1</title>
+</head>
+<body>
+<script>
+    var vehicleName ='Toyota';
+    console.log(this);
+
+    function printVehicleNameOuter() {
+        console.log(this.vehicleName);
+    }
+    printVehicleNameOuter();
+
+    var vehicle ={
+        vehicleName:'Nissan',
+        printVehicleNameInner : function () {
+            return function () {
+                console.log(this.vehicleName);
+            }
+        }
+    };
+
+    //Vehicle.printVehicleNameInner();
+
+    var execute = vehicle.printVehicleNameInner();
+    execute();
+
+    execute.call(vehicle);
+
+    execute.bind(vehicle);
+
+    var execute2 = vehicle.printVehicleNameInner().bind(vehicle);
+    execute2();
+
+    var execute3 = vehicle.printVehicleNameInner().bind(window);
+    execute3();
+</script>
+</body>
+</html>

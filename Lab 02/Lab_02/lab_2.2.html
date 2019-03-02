@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 2.2</title>
+</head>
+<body>
+<script>
+    function taxCalculator(taxPercentage) {
+
+        return function (amount) {
+            return amount*taxPercentage/100;
+        }
+    }
+    const execute = taxCalculator(15);
+
+    const tax = execute(10000);
+    console.log(tax);
+</script>
+</body>
+</html>

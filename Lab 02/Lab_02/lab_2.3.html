@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 2.3</title>
+</head>
+<body>
+<script>
+    function fetchUser(){
+        fetch('https://api.github.com/users').then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            console.log(json);
+        });
+    }
+
+    fetchUser();
+
+    function fetchUsers2() {
+        return fetch('https://api.github.com/users')
+            .then(response => response.json());
+    }
+    fetchUsers2().then(function (json) {
+        console.log(json);
+    });
+</script>
+</body>
+</html>
