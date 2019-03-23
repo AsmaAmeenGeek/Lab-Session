@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var vehicleName = 'Nissan';
+    console.log(this);
+
+    function printVehicleName() {
+        console.log(this.vehicleName);
+    }
+    printVehicleName();
+
+    var Vehicle ={
+        vehicleName : 'Toyota',
+        // getVehicleName : printVehicleName
+        getVehicleName : function () {
+            // console.log(this.vehicleName);
+            return function () {
+                console.log(this.vehicleName);
+            }
+        }
+    };
+
+    var Vehicle2 ={
+        vehicleName : 'Mezda',
+
+    };
+
+   var execute = Vehicle.getVehicleName();
+    execute();
+   execute.call(Vehicle);
+   // execute.bind(Vehicle);
+    // printVehicleName();
+
+    var execute2 = Vehicle.getVehicleName().bind(Vehicle);
+    execute2();
+    var execute3 = Vehicle.getVehicleName().bind(Vehicle2);
+    execute3();
+
+    function calcTax(value) {
+        return function (amount) {
+            return amount + amount*value/100;
+        }
+    }
+
+    var fin = calcTax(30);
+
+    console.log('Value is : '+fin(10000));
+
+
+    function fetchUser() {
+        fetch('https://api.github.com/users').then(function (response) {
+            return response.json();
+        }).then(function (lol) {
+            console.log(lol);
+        })
+    }
+
+    fetchUser();
+
+    function fetchUser2() {
+        return fetch('https://api.github.com/users').then(response => response.json());
+    }
+
+    fetchUser2().then(function (objSet) {
+        console.log(objSet);
+    })
+</script>
+</body>
+</html>
